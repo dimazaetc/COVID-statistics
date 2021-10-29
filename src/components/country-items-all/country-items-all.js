@@ -66,11 +66,16 @@ function CountryItemsAll() {
   const sortData = (field) => {
     const copyData = countries.concat();
     let sortData;
-    if (sortCountry || sortTotalConfirmed) {
+    if (
+      (sortCountry && field === "Country") ||
+      (sortTotalConfirmed && field === "TotalConfirmed")
+    ) {
+      console.log("1", field);
       sortData = copyData.sort((a, b) => {
         return a[field] > b[field] ? 1 : -1;
       });
     } else {
+      console.log("2", field);
       sortData = copyData.sort((a, b) => {
         return a[field] > b[field] ? -1 : 1;
       });
@@ -82,8 +87,6 @@ function CountryItemsAll() {
     } else if (field === "Country") {
       setSortCountry(!sortCountry);
     }
-    console.log("country", sortCountry);
-    console.log("total", sortTotalConfirmed);
   };
   return (
     <div className="container">
